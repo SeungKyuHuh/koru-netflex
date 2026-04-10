@@ -1,0 +1,28 @@
+.notfound-container {
+  height: 90vh;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.notfound-title {
+  font-size: 120px;
+  font-weight: bold;
+  color: #e50914;
+  margin: 0;
+}
+
+.notfound-subtitle {
+  font-size: 32px;
+  margin: 10px 0;
+}
+
+.notfound-text {
+  font-size: 18px;
+  color: #aaa;
+  margin-bottom: 30px;
+}
