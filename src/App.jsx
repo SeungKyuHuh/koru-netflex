@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './App.css'
 import { Routes, Route } from 'react-router-dom';
 import AppLayout from './layout/AppLayout'
@@ -7,12 +6,22 @@ import MoviePage from './pages/Movies/MoviePage'
 import MovieDetailPage from './pages/MovieDetail/MovieDetailPage'
 import NotFoundPage from './pages/NotFound/NotFoundPage'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // 홈페이지  (/)
 // 영화 전체보여주는 페이지(서치)  (/movies)
 // 영화 디테일 페이지  (/movies/:id)
 function App() {
-  const [count, setCount] = useState(0)
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const redirect = params.get('redirect');
+
+  if (redirect) {
+    navigate(redirect);
+  }}, []);
 
   return (
     <div className="layout">
