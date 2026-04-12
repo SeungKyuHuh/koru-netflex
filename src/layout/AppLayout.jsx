@@ -6,11 +6,12 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Outlet } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import "./AppLayout.style.css"
 
 const AppLayout = () => {
   return (
     <div>
-    <Navbar expand="lg" className="bg-dark navbar-dark">
+    <Navbar expand="lg" className="netflix-navbar navbar-dark">
       <Container fluid>
         <Navbar.Brand as={Link} to="/">
         <img
