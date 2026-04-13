@@ -1,8 +1,31 @@
 import React from 'react'
 import Badge from 'react-bootstrap/Badge';
 import "./MovieCard.style.css";
+import Alert from 'react-bootstrap/Alert'
+import Spinner from 'react-bootstrap/Spinner';
+import {useMovieGenreQuery} from '../../hooks/useMovieGenre'
 
 const MovieCard = ({movie}) => {
+
+    const {data:genreData , isLoading, isError, error} = useMovieGenreQuery();
+
+    if(isLoading){
+        return <Spinner animation="border"/>;
+    }
+
+    if(isError){
+        return <Alert key='danger' variant='danger'>{error.message}</Alert>;
+    }
+
+    const showGenre = (genreIdList) => {
+        if(!genreData) return []
+        const genreNameList = genreIdList.map((id) => {
+            const genreObj = genreData.find((genre) => genre.id === id);
+            return genreObj.name;
+        })
+        return genreNameList;
+    }
+
   return (
     <div
         style={{backgroundImage:
@@ -12,7 +35,7 @@ const MovieCard = ({movie}) => {
     >
         <div className="over-ray">
             <h1>{movie.title}</h1>
-            {movie.genre_ids.map((id) =>(
+            {showGenre(movie.genre_ids).map((id) =>(
                 <Badge bg="danger">{id}</Badge>
             ))}
             <div>
