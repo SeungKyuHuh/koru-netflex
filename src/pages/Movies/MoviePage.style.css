@@ -1,0 +1,49 @@
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 50px;
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .movie-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* 가운데 */
+    gap: 20px;
+  }
+
+  .movie-col {
+    flex: 0 0 100% !important;
+    max-width: 300px !important;
+  }
+}
+
+
+.pagination {
+  background-color: black;
+  padding: 10px;
+  justify-content: center;
+}
+
+.pagination .page-link {
+  background-color: transparent !important;
+  border: none !important;
+  color: white !important;
+}
+
+.pagination .page-link:hover {
+  color: #e50914 !important;
+  background-color: transparent !important;
+}
+
+.pagination .active .page-link {
+  background-color: transparent !important;
+  color: #e50914 !important;
+  font-weight: bold;
+}
+
+.pagination .page-item.disabled .page-link {
+  background-color: transparent !important; 
+  color: gray !important;
+}
