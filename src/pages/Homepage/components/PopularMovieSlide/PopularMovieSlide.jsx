@@ -8,14 +8,6 @@ import { responsive } from '../../../../constants/responsive';
 const PopularMovieSlide = () => {
 
     const {data, isLoading, isError, error} = usePopularMoviesQuery();
-    
-    if(isLoading){
-        return <Spinner animation="border"/>;
-    }
-
-    if(isError){
-        return <Alert key='danger' variant='danger'>{error.message}</Alert>;
-    }
 
   return (
     <div>

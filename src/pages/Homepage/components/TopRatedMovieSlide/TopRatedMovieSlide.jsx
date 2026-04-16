@@ -9,14 +9,6 @@ const TopRatedMoviesSlide = () => {
 
     const {data, isLoading, isError, error} = useTopRatedMoviesQuery();
 
-    if(isLoading){
-        return <Spinner animation="border"/>;
-    }
-
-    if(isError){
-        return <Alert key='danger' variant='danger'>{error.message}</Alert>;
-    }
-
   return (
     <div>
         <MovieSlider title='Top Rated Movies' movies={data.results} responsive={responsive} />

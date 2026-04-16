@@ -1,0 +1,156 @@
+.movie-detail-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-section {
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+
+  display: flex;              
+  justify-content: center;    
+  align-items: center;        
+}
+
+.movie-detail-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  max-width: 1200px;   
+  margin: 0 auto;      
+  transform: scale(0.9);
+}
+
+.review-section {
+  height: 20%;
+  background: black;
+  color: white;
+  padding: 15px;
+  overflow-y: auto;
+}
+
+.review-list {
+  display: flex;
+  flex-direction: column;  
+  gap: 15px;
+}
+
+.review-card {
+  width: 100%;
+  background: #1a1a1a;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.review-content {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.review-inner {
+  width: 100%;
+  max-width: 1200px;
+  transform: scale(0.9);      
+  transform-origin: top center;   
+}
+
+.poster {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.info {
+  width: 50%;
+  height: 100%;
+  padding: 60px;
+  overflow-y: auto;  
+  color: white;
+}
+
+.genres {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.meta {
+  display: flex;
+  gap: 15px;
+  margin: 15px 0;
+}
+
+.overview {
+  margin: 20px 0;
+  line-height: 1.6;
+}
+
+.extra div {
+  margin: 8px 0;
+}
+
+@media (max-width: 768px) {
+
+  .movie-detail-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .poster {
+    width: 100%;
+  }
+
+  .poster img {
+    width: 70%;
+    height: auto;
+  }
+
+  .info {
+    width: 100%;
+    padding: 20px;
+    text-align: left;   
+  }
+
+  .genres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: flex-start;
+  }
+
+  .info h1 {
+    font-size: 1.6rem;
+    margin: 10px 0;
+    word-break: keep-all;
+  }
+
+  .meta {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+}

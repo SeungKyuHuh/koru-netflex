@@ -9,6 +9,9 @@ import MovieCard from '../../common/MovieCard/MovieCard';
 import ReactPaginate from 'react-paginate';
 import "./MoviePage.style.css"
 import {useMovieGenreQuery} from '../../hooks/useMovieGenre'
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import SplitButton from 'react-bootstrap/SplitButton';
 
 // 경로 2가지
 // nav바에서 클릭해서 온경우 => popularMovie 보여주기
@@ -22,26 +25,18 @@ const MoviePage = () => {
   const[query, setQuery] = useSearchParams();
   const[page, setPage] = useState(1);
   const [genre, setGenre] = useState("");
-  const [sort, setSort] = useState("");  
+  const [sort, setSort] = useState("popular");  
   const keyword = query.get('q');
 
-  const {data, isLoading, isError, error} = useSearchMovieQuery({keyword, page});
+  const {data} = useSearchMovieQuery({keyword, page, genre, sort});
   const {data:genreData} = useMovieGenreQuery();
-
-  if(isLoading){
-      return <Spinner animation="border"/>;
-  }
-
-  if(isError){
-      return <Alert key='danger' variant='danger'>{error.message}</Alert>;
-  }
 
   const PaginateComponent = ReactPaginate.default || ReactPaginate;  
 
   const handlePageClick = ({selected}) => {
     setPage(selected + 1);
   }
-
+/*
   const filteredMovies = data?.results?.filter((movie) =>
     genre ? movie.genre_ids.includes(Number(genre)) : true
   );
@@ -58,36 +53,65 @@ const MoviePage = () => {
     }
     return 0;
   });
-
+*/
   const isMobile = window.innerWidth <= 768;
   
-  // console.log("data:", data);
+  //  console.log("data:", data);
   // console.log("genreData:", genreData);
 
   return (
     <div >
       <Container>
-        <Col lg={4} xs={12}>
+        <Col lg={4} xs={12} className="d-flex align-items-center gap-2">
           Genre &nbsp;  
-          <select onChange={(event) => setGenre(event.target.value)}>
-            <option value="">전체</option>
+          {[DropdownButton].map((DropdownType, idx) => (
+            <DropdownType
+              key={idx}
+              id={`dropdown-button-drop-${idx}`}
+              size="sm"
+              title={genre ? genreData?.find(g => g.id === Number(genre))?.name : "전체" }
+              onSelect={(eventKey) => {
+                setGenre(eventKey);
+                setPage(1);
+              }}
+              variant="secondary"
+            >
             {genreData?.map((genre) => (
-              <option key={genre.id} value={genre.id}>
-                {genre.name}
-              </option>
+              <Dropdown.Item key={genre.id} eventKey={genre.id}>{genre.name}</Dropdown.Item>
             ))}
-          </select>
+            </DropdownType>
+          ))}          
           &nbsp; &nbsp;  
-          정렬 &nbsp;  
-          <select onChange={(e) => setSort(e.target.value)}>
-            <option value="popular">인기순</option>
-            <option value="rate">평점순</option>
-            <option value="latest">최신순</option>
-          </select>
+          
+        {[DropdownButton].map((DropdownType, idx) => (
+          <DropdownType
+            key={idx}
+            id={`sort-dropdown-${idx}`}
+            size="sm"
+            variant="secondary"
+            title={
+              sort === "popular"
+                ? "인기순"
+                : sort === "rate"
+                ? "평점순"
+                : sort === "latest"
+                ? "최신순"
+                : "Sort"
+            }
+            onSelect={(eventKey) => {
+              setSort(eventKey);
+              setPage(1);
+            }}
+          >
+            <Dropdown.Item eventKey="popular">인기순</Dropdown.Item>
+            <Dropdown.Item eventKey="rate">평점순</Dropdown.Item>
+            <Dropdown.Item eventKey="latest">최신순</Dropdown.Item>
+          </DropdownType>
+        ))}
         </Col>
-        <Col lg={8} xs={12}>
+        <Col lg={8} xs={12} >
           <Row className="movie-grid">
-          {sortedMovies?.map((movie,index) => (
+          {data?.results?.map((movie,index) => (
             <Col key={index} lg={4} xs={12} 
                  className="movie-col"
                  style={{ flex: "0 0 20%", maxWidth: "20%" }}

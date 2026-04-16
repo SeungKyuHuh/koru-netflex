@@ -7,13 +7,7 @@ import "./Banner.style.css"
 const Banner = () => {
 
   const {data, isLoading, isError, error} = usePopularMoviesQuery();
-  
-  if(isLoading){
-    return <Spinner animation="border" />
-  }
-  if(isError){
-    return <Alert key='danger' variant='danger'>{error.message}</Alert>;
-  }
+
   const movie = data?.results?.[0];
 
   return (
