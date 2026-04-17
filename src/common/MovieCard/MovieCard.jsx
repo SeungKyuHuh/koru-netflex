@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 
 const MovieCard = ({movie}) => {
 
-    console.log("movie:" , movie);
     const {data:genreData} = useMovieGenreQuery();
 
     const showGenre = (genreIdList) => {

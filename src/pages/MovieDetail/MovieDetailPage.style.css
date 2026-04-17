@@ -1,11 +1,11 @@
 .movie-detail-page {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
 .top-section {
-  height: 80%;
+  min-height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,12 +31,10 @@
   transform: scale(0.9);
 }
 
-.review-section {
-  height: 20%;
-  background: black;
+.content-section {
+  background-color: black;
   color: white;
-  padding: 15px;
-  overflow-y: auto;
+  padding: 40px 0;
 }
 
 .review-list {
@@ -64,10 +62,19 @@
 }
 
 .review-inner {
-  width: 100%;
-  max-width: 1200px;
-  transform: scale(0.9);      
-  transform-origin: top center;   
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.recommend-section {
+  background-color: black;
+  color: white;
+  padding: 40px;
+}
+
+.recommend-section h3 {
+  margin-bottom: 20px;
 }
 
 .poster {
@@ -112,6 +119,7 @@
 .extra div {
   margin: 8px 0;
 }
+
 
 @media (max-width: 768px) {
 
