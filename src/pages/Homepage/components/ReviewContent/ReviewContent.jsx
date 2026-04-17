@@ -22,7 +22,7 @@ import Button from 'react-bootstrap/Button';
       <div className="review-list">
         {reviewData.results.map((review) => {
           const expanded = expandedReviews[review.id];
-          const isLong = review.content.length > 200; 
+          const isLong = review.content.length > 700; 
 
           return (
             <div className="review-card" key={review.id}>
