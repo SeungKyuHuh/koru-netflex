@@ -28,7 +28,7 @@ const MoviePage = () => {
   const [sort, setSort] = useState("popular");  
   const keyword = query.get('q');
 
-  const {data} = useSearchMovieQuery({keyword, page, genre, sort});
+  const {data} = useSearchMovieQuery({keyword, page});
   const {data:genreData} = useMovieGenreQuery();
 
   const PaginateComponent = ReactPaginate.default || ReactPaginate;  
@@ -36,7 +36,7 @@ const MoviePage = () => {
   const handlePageClick = ({selected}) => {
     setPage(selected + 1);
   }
-/*
+
   const filteredMovies = data?.results?.filter((movie) =>
     genre ? movie.genre_ids.includes(Number(genre)) : true
   );
@@ -53,7 +53,7 @@ const MoviePage = () => {
     }
     return 0;
   });
-*/
+
   const isMobile = window.innerWidth <= 768;
   
   //  console.log("data:", data);
@@ -76,6 +76,9 @@ const MoviePage = () => {
               }}
               variant="secondary"
             >
+            <Dropdown.Item eventKey="">
+              전체
+            </Dropdown.Item>  
             {genreData?.map((genre) => (
               <Dropdown.Item key={genre.id} eventKey={genre.id}>{genre.name}</Dropdown.Item>
             ))}
@@ -111,7 +114,7 @@ const MoviePage = () => {
         </Col>
         <Col lg={8} xs={12} >
           <Row className="movie-grid">
-          {data?.results?.map((movie,index) => (
+          {sortedMovies?.map((movie,index) => (
             <Col key={index} lg={4} xs={12} 
                  className="movie-col"
                  style={{ flex: "0 0 20%", maxWidth: "20%" }}
